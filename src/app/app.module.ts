@@ -1,5 +1,8 @@
+import { HttpModule } from '@angular/http';
+import { ChartLyricsService } from './services/chart-lyrics.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing/app-routing.module';
 import { AppComponent } from './app.component';
@@ -12,9 +15,11 @@ import { DashboardComponent } from './dashboard/dashboard.component';
   ],
   imports: [    
     BrowserModule,
+    FormsModule,
+    HttpModule,
     AppRoutingModule,
   ],
-  providers: [],
+  providers: [ChartLyricsService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
