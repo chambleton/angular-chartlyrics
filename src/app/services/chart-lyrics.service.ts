@@ -42,7 +42,7 @@ export class ChartLyricsService {
   public getSongsByLyricText(lyricText: string): Observable<SearchLyricResult[]> {
     var headers = new Headers();
     headers.append('Accept', 'application/xml');    
-    return this.http.get('http://api.chartlyrics.com/apiv1.asmx/SearchLyricText?lyricText='+ lyricText, {headers: headers})
+    return this.http.get('https://api.chartlyrics.com/apiv1.asmx/SearchLyricText?lyricText='+ lyricText, {headers: headers})
         .map(res => this.searchLyricXmlToJson(res.text())
         .map((value: Array<any>) => {
           let result:Array<SearchLyricResult> = [];  
@@ -84,7 +84,7 @@ export class ChartLyricsService {
   public getLyrics(lyricId: number, lyricChecksum: string): Observable<GetLyricResult> {
     var headers = new Headers();
     headers.append('Accept', 'application/xml');    
-    return this.http.get('http://api.chartlyrics.com/apiv1.asmx/GetLyric?lyricId='+ lyricId +'&lyricCheckSum='+ lyricChecksum, {headers: headers})
+    return this.http.get('https://api.chartlyrics.com/apiv1.asmx/GetLyric?lyricId='+ lyricId +'&lyricCheckSum='+ lyricChecksum, {headers: headers})
         .map(res => this.getLyricXmlToJson(res.text()));
     }
 
