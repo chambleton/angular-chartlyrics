@@ -7,6 +7,7 @@ import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing/app-routing.module';
 import { AppComponent } from './app.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { ModalModule } from './dashboard/modal/modal.module';
 
 @NgModule({
   declarations: [
@@ -17,9 +18,11 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     BrowserModule,
     FormsModule,
     HttpModule,
+    ModalModule,
     AppRoutingModule,
   ],
   providers: [ChartLyricsService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+
