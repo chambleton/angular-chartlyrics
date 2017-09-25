@@ -1,9 +1,12 @@
 <!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h3>
-    {{title}}
-  </h3>  
-</div>
+
+<md-toolbar color="primary">    
+  <!--
+    <button md-button [mdMenuTriggerFor]="appMenu"><md-icon>menu</md-icon>Test</button>    
+  -->
+    <span class="example-spacer"></span>
+    <span >{{title}}</span>
+</md-toolbar>
 
 <button (click)='modalService.open(modalId)'>Open Modal</button>
 <app-modal [modalTitle]="'Some title'" [blocking]='false' [modalId]='modalId'>
@@ -11,3 +14,6 @@
 </app-modal>
 
 <router-outlet></router-outlet>
+
+
+
