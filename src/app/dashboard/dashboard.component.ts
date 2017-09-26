@@ -11,6 +11,7 @@ import { Component, OnInit } from '@angular/core';
 export class DashboardComponent implements OnInit {
 
   showLyrics: boolean = false;
+  selectedSongListItem: SearchLyricResult;
   selectedSong: GetLyricResult = new GetLyricResult();
   savedSongs: SearchLyricResult[] = [];
   songs: SearchLyricResult[] = [];
@@ -38,6 +39,17 @@ export class DashboardComponent implements OnInit {
   addSong(song: SearchLyricResult) {
     this.savedSongs.push(song);
   }
+  
+  removeSong(song: SearchLyricResult) {
+    var index = this.savedSongs.indexOf(song);
+    if (index > -1) {
+      this.savedSongs.splice(index, 1);
+    }    
+  }
+  
+  addSelectedSong() {
+    this.savedSongs.push(this.selectedSongListItem);
+  }
 
   clearSearch() {
     this.songs = [];
@@ -46,6 +58,7 @@ export class DashboardComponent implements OnInit {
   }
 
   getLyrics(song: SearchLyricResult) {
+    this.selectedSongListItem = song;
     this.showLyrics = true;
     this.ChartLyricsService.getLyrics(song.LyricId, song.LyricChecksum)
                 .subscribe(

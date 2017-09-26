@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { ModalService } from './dashboard/modal/modal.service';
 
 @Component({
   selector: 'app-root',
@@ -8,9 +7,7 @@ import { ModalService } from './dashboard/modal/modal.service';
 })
 export class AppComponent {
   title = 'ChartLyrics Song/Lyrics Lookup';
-  modalId = 'hoplaModal';
   
-    constructor(
-      public modalService: ModalService
+    constructor(      
     ) {}
 }
