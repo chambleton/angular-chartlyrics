@@ -1,0 +1,48 @@
+<p>
+  <br>
+  Know a phrase from a song but don't know the artist or title? Look it up here!
+</p>
+<form ngNoForm (submit)="searchLyrics()">
+  <input [(ngModel)]="searchText" mdInput placeholder="Search for lyrics">
+  <button md-raised-button class="small-btn" color="primary" type="submit">Search</button> &nbsp; <button md-raised-button color="primary" (click)="clearSearch()" class="small-btn">Clear</button>
+</form>
+
+<md-list *ngIf="!showLyrics">
+  <md-list-item *ngFor="let song of songs" class="slim-list-item">
+    <button md-raised-button class="small-btn" color="primary" (click)="addSong(song)">Add</button> &nbsp;<a target="_blank" href="{{song.SongUrl}}"><span [innerHTML]="song.Song"></span></a> &nbsp; by &nbsp;<a target="_blank" href="{{song.ArtistUrl}}"><span [innerHTML]="song.Artist"></span></a>
+    &nbsp;
+    <button md-button class="small-btn" (click)="getLyrics(song)">
+        <md-icon>audiotrack</md-icon>
+      </button>    
+  </md-list-item>
+</md-list>
+
+<div *ngIf="showLyrics">
+    <div>
+        <h4 class="modal-title">{{selectedSong.LyricSong}}<span style="float: right;">{{selectedSong.LyricArtist}}</span></h4>         
+    </div>
+    <div>
+        <img style="float: right;" src="{{selectedSong.LyricCovertArtUrl}}" width="100px" height="100px" />
+        <p [innerHTML]="selectedSong.Lyric"></p>        
+    </div>
+    <div>
+        <button md-raised-button class="small-btn" color="primary" (click)="showLyrics=false;">Back to List</button>
+        &nbsp;
+        <button md-raised-button class="small-btn" color="primary" (click)="addSelectedSong(); showLyrics=false;">Add</button>
+    </div>
+</div>
+
+<div *ngIf="savedSongs.length > 0">
+  <h4>Saved Songs</h4>
+  <md-list>
+    <md-list-item *ngFor="let song of savedSongs" class="slim-list-item">
+        <button md-button class="small-btn" (click)="removeSong(song)">
+          <md-icon>clear</md-icon>
+        </button>
+      <a target="_blank" href="{{song.SongUrl}}"><span [innerHTML]="song.Song"></span></a>&nbsp; by &nbsp;<a target="_blank" href="{{song.ArtistUrl}}">{{song.Artist}}</a>
+    </md-list-item>
+  </md-list>
+</div>
+
+<div *ngIf="errorMessage !== undefined"><span style="color: red;">{{errorMessage}}</span></div>
+<br><br>
