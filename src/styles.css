@@ -11,6 +11,10 @@ body {
     line-height: 24px !important;
 }
 
-.slim-list-item {
-    height: 30px;
+.slim-list-item, .mat-list-item-content {
+    height: 30px !important;
+}
+
+h4 {
+    margin-bottom: 0px !important;
 }
