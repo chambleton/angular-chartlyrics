@@ -2,7 +2,7 @@
 > Demo of the ChartLyrics API using angular 4 (angular-cli) and material.io
 
 
-The ChartLyrics api is documented [here](www.chartlyrics.com). 
+The ChartLyrics api is documented [here](http://www.chartlyrics.com). 
 
 
 ## Build from source
