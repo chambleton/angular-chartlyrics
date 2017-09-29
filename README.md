@@ -19,6 +19,8 @@ Install npm dependencies and run:
 ```bash
 npm install
 npm start
+   or 
+npm test
 ```
 
 ## Notes

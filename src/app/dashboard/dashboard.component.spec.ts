@@ -1,6 +1,9 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { FormsModule } from '@angular/forms';
+import { MdButtonModule, MdInputModule, MdToolbarModule, MdListModule, MdIconModule } from '@angular/material';
 import { DashboardComponent } from './dashboard.component';
+import { ChartLyricsService } from '../services/chart-lyrics.service';
+import { HttpModule } from '@angular/http';
 
 describe('DashboardComponent', () => {
   let component: DashboardComponent;
@@ -8,7 +11,10 @@ describe('DashboardComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ DashboardComponent ]
+      imports: [ FormsModule, HttpModule,
+        MdButtonModule, MdInputModule, MdToolbarModule, MdIconModule,MdListModule ],
+      declarations: [ DashboardComponent ],
+      providers: [ ChartLyricsService ]
     })
     .compileComponents();
   }));
