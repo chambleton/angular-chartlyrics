@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Http, Response, Headers } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/observable/from';
+//import 'rxjs/add/observable/from';
 import 'rxjs/add/operator/map';
 
 
@@ -36,7 +36,7 @@ export class SearchLyricResult
  */
 @Injectable()
 export class ChartLyricsService {
-
+  
   constructor(private http: Http) {}
 
   public getSongsByLyricText(lyricText: string): Observable<SearchLyricResult[]> {
@@ -55,14 +55,15 @@ export class ChartLyricsService {
 
  // Changes XML to JSON
   private searchLyricXmlToJson(xmlText: any): any {  
-    xmlText = xmlText.replace(/[\n\r]/g, ' ');
+    var obj:any = [];
+
+    if(xmlText && typeof(xmlText) === "string") {
+      xmlText = xmlText.replace(/[\n\r]/g, ' ');
+    }
 
     var oParser: DOMParser = new DOMParser();
     var xml: XMLDocument = oParser.parseFromString(xmlText, "text/xml");
-    var results: any = xml.getElementsByTagName("SearchLyricResult");
- 
-    // Create the return object
-    var obj:any = [];
+    var results: any = xml.getElementsByTagName("SearchLyricResult"); 
     
     for(var i=0; i<results.length; i++) {
       var elems = results.item(i).children;
@@ -83,6 +84,7 @@ export class ChartLyricsService {
 
   public getLyrics(lyricId: number, lyricChecksum: string): Observable<GetLyricResult> {
     var headers = new Headers();
+    
     headers.append('Accept', 'application/xml');    
     return this.http.get('http://api.chartlyrics.com/apiv1.asmx/GetLyric?lyricId='+ lyricId +'&lyricCheckSum='+ lyricChecksum, {headers: headers})
         .map(res => this.getLyricXmlToJson(res.text()));
@@ -90,14 +92,15 @@ export class ChartLyricsService {
 
   // Changes XML to JSON
   private getLyricXmlToJson(xmlText: any): any {  
-    xmlText = xmlText.replace(/[\n\r]/g, ' ');
+    var obj:any = {};
+
+    if(xmlText && typeof(xmlText) === "string") {
+      xmlText = xmlText.replace(/[\n\r]/g, ' ');
+    }
 
     var oParser: DOMParser = new DOMParser();
     var xml: XMLDocument = oParser.parseFromString(xmlText, "text/xml");
-    var results: any = xml.getElementsByTagName("GetLyricResult");
- 
-    // Create the return object
-    var obj:any = {};
+    var results: any = xml.getElementsByTagName("GetLyricResult");    
     
     for(var i=0; i<results.length; i++) {
       var elems = results.item(i).children;

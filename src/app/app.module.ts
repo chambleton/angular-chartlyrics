@@ -1,5 +1,6 @@
-import { HttpModule } from '@angular/http';
+import { HttpModule, JsonpModule, ConnectionBackend } from '@angular/http';
 import { ChartLyricsService } from './services/chart-lyrics.service';
+import { SearchService } from './services/itunesSearch.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MdButtonModule, MdInputModule, MdToolbarModule, MdListModule, MdIconModule } from '@angular/material';
@@ -20,11 +21,11 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     BrowserModule,
     BrowserAnimationsModule,
     HttpModule,
-    FormsModule,
+    FormsModule,JsonpModule,
     MdButtonModule, MdInputModule, MdToolbarModule, MdListModule, MdIconModule,
-    AppRoutingModule,
+    AppRoutingModule, 
   ],
-  providers: [ChartLyricsService],
+  providers: [ChartLyricsService, SearchService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
